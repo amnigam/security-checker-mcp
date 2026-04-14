@@ -1,0 +1,19 @@
+{
+  "name": "vulnerable-test-app",
+  "version": "1.0.0",
+  "description": "TEST FIXTURE — contains unpinned dependencies",
+  "dependencies": {
+    "express": "^4.17.0",
+    "lodash": "*",
+    "jsonwebtoken": ">=8.0.0",
+    "mongoose": "~5.0.0",
+    "bcrypt": "latest",
+    "axios": "^0.21.0",
+    "helmet": "^4.0.0",
+    "cors": "^2.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.0",
+    "jest": ">=27.0.0"
+  }
+}

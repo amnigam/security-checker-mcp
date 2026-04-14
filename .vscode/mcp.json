@@ -1,0 +1,17 @@
+{
+	"servers": {
+		"security-checker": {
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"run",
+				"--directory",
+				"/home/rudra/projects/security-checker-mcp",
+				"python",
+				"-m",
+				"security_checker.mcp_server"
+			]
+		}
+	},
+	"inputs": []
+}

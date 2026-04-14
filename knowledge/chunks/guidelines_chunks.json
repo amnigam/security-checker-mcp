@@ -1,0 +1,3703 @@
+{
+  "version": "1.0",
+  "total_guidelines": 150,
+  "domains": 12,
+  "chunks": [
+    {
+      "id": "SM-01.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-01",
+      "parent_title": "Session ID Entropy and Randomness",
+      "severity": "CRITICAL",
+      "text": "Session identifiers MUST be generated using a cryptographically secure pseudo-random number generator (CSPRNG). Math.random(), rand(), random.randint MUST NOT be used.",
+      "detection_hints": [
+        "Math.random",
+        "rand()",
+        "random.randint",
+        "random.random",
+        "uuid1",
+        "uuid.uuid1",
+        "Date.now",
+        "srand"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-01.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-01",
+      "parent_title": "Session ID Entropy and Randomness",
+      "severity": "CRITICAL",
+      "text": "Session IDs MUST have at least 128 bits of entropy.",
+      "detection_hints": [
+        "session_id",
+        "sid",
+        "token_length"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-02.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-02",
+      "parent_title": "Session ID Length",
+      "severity": "CRITICAL",
+      "text": "Session IDs MUST be at least 32 characters long when hex-encoded, 22 characters when base64.",
+      "detection_hints": [
+        "session_id",
+        "sid_length"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-03.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-03",
+      "parent_title": "Session ID Transmission",
+      "severity": "CRITICAL",
+      "text": "Session IDs MUST be transmitted only in HTTP cookies. URL parameters and hidden form fields PROHIBITED.",
+      "detection_hints": [
+        "sessionid",
+        "sid=",
+        "token=",
+        "?session",
+        "&session",
+        "URL"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-03.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-03",
+      "parent_title": "Session ID Transmission",
+      "severity": "CRITICAL",
+      "text": "Session IDs MUST NOT appear in URLs, query strings, or referrer headers.",
+      "detection_hints": [
+        "query_string",
+        "referrer",
+        "url_param"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-04.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-04",
+      "parent_title": "Cookie Secure Attribute",
+      "severity": "CRITICAL",
+      "text": "Session cookies MUST have the Secure attribute set. Transmission over unencrypted HTTP PROHIBITED.",
+      "detection_hints": [
+        "Secure",
+        "cookie",
+        "set_cookie",
+        "Set-Cookie",
+        "secure=False",
+        "secure=false"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-05.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-05",
+      "parent_title": "Cookie HttpOnly Attribute",
+      "severity": "CRITICAL",
+      "text": "Session cookies MUST have the HttpOnly attribute set to prevent client-side script access.",
+      "detection_hints": [
+        "HttpOnly",
+        "httponly",
+        "httpOnly=False",
+        "httponly=false",
+        "document.cookie"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-06.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-06",
+      "parent_title": "Cookie SameSite Attribute",
+      "severity": "CRITICAL",
+      "text": "Session cookies MUST set SameSite=Lax or SameSite=Strict. SameSite=None requires justification.",
+      "detection_hints": [
+        "SameSite",
+        "samesite",
+        "SameSite=None"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-07.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-07",
+      "parent_title": "Cookie Domain Scope",
+      "severity": "CRITICAL",
+      "text": "Cookie Domain attribute MUST be set to the most restrictive domain possible. Wildcard domains PROHIBITED.",
+      "detection_hints": [
+        "domain=",
+        "cookie_domain",
+        "Domain="
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-08.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-08",
+      "parent_title": "Cookie Path Scope",
+      "severity": "CRITICAL",
+      "text": "Cookie Path attribute MUST be set to the most specific path possible.",
+      "detection_hints": [
+        "path=/",
+        "cookie_path",
+        "Path="
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-09.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-09",
+      "parent_title": "Session Fixation Prevention",
+      "severity": "CRITICAL",
+      "text": "A new session ID MUST be issued upon successful authentication. Pre-authentication session IDs MUST be invalidated.",
+      "detection_hints": [
+        "session_fixation",
+        "regenerate",
+        "session.regenerate",
+        "new_session"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-09.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-09",
+      "parent_title": "Session Fixation Prevention",
+      "severity": "CRITICAL",
+      "text": "Session regeneration MUST occur before associating the session with authenticated user data.",
+      "detection_hints": [
+        "login",
+        "authenticate",
+        "session_id"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-10.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-10",
+      "parent_title": "Session Invalidation on Logout",
+      "severity": "CRITICAL",
+      "text": "On logout, the server MUST invalidate the session on the server side and clear the session cookie on the client.",
+      "detection_hints": [
+        "logout",
+        "session.destroy",
+        "session.invalidate",
+        "session.clear"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-10.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-10",
+      "parent_title": "Session Invalidation on Logout",
+      "severity": "CRITICAL",
+      "text": "Logout MUST invalidate all server-side session data, not just remove the cookie.",
+      "detection_hints": [
+        "session_store",
+        "delete_session"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-11.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-11",
+      "parent_title": "Session Invalidation on Password Change",
+      "severity": "CRITICAL",
+      "text": "All existing sessions MUST be invalidated when a user changes their password, except the current session.",
+      "detection_hints": [
+        "password_change",
+        "change_password",
+        "invalidate_sessions"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-12.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-12",
+      "parent_title": "Concurrent Session Control",
+      "severity": "CRITICAL",
+      "text": "Systems SHOULD limit concurrent sessions per user. Exceeding the limit MUST either deny new sessions or invalidate the oldest.",
+      "detection_hints": [
+        "concurrent_sessions",
+        "max_sessions",
+        "session_limit"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-13.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-13",
+      "parent_title": "Idle Session Timeout",
+      "severity": "CRITICAL",
+      "text": "Sessions MUST expire after a configured idle period. Default: 15 minutes for sensitive, 30 minutes for standard applications.",
+      "detection_hints": [
+        "session_timeout",
+        "idle_timeout",
+        "SESSION_TIMEOUT",
+        "session.max_age"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-13.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-13",
+      "parent_title": "Idle Session Timeout",
+      "severity": "CRITICAL",
+      "text": "Idle timeout MUST be enforced server-side. Client-side timeout alone is insufficient.",
+      "detection_hints": [
+        "setTimeout",
+        "client_timeout"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-14.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-14",
+      "parent_title": "Absolute Session Timeout",
+      "severity": "CRITICAL",
+      "text": "Sessions MUST have an absolute maximum lifetime regardless of activity. Default: 8 hours for standard, 1 hour for sensitive.",
+      "detection_hints": [
+        "absolute_timeout",
+        "max_lifetime",
+        "session_max_age"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-15.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-15",
+      "parent_title": "Session Data Protection",
+      "severity": "CRITICAL",
+      "text": "Session data stored server-side MUST be protected from unauthorized access. Encryption at rest REQUIRED for sensitive session data.",
+      "detection_hints": [
+        "session_store",
+        "session_data",
+        "redis",
+        "memcached"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-16.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-16",
+      "parent_title": "Session Token Binding",
+      "severity": "CRITICAL",
+      "text": "Sessions SHOULD be bound to client characteristics (IP, User-Agent). Changes SHOULD trigger re-authentication.",
+      "detection_hints": [
+        "ip_binding",
+        "user_agent",
+        "session_binding"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-17.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-17",
+      "parent_title": "Remember Me Functionality",
+      "severity": "CRITICAL",
+      "text": "Remember-me tokens MUST be cryptographically random, single-use, and stored hashed server-side.",
+      "detection_hints": [
+        "remember_me",
+        "persistent_login",
+        "remember_token",
+        "auto_login"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-17.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-17",
+      "parent_title": "Remember Me Functionality",
+      "severity": "CRITICAL",
+      "text": "Remember-me tokens MUST have a maximum lifetime and MUST be invalidated on password change.",
+      "detection_hints": [
+        "remember_me_expiry",
+        "token_lifetime"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-18.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-18",
+      "parent_title": "Session Management in APIs",
+      "severity": "CRITICAL",
+      "text": "API sessions MUST use token-based authentication (JWT, OAuth2) rather than cookie-based sessions where possible.",
+      "detection_hints": [
+        "api_session",
+        "api_token",
+        "authorization_header"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-19.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-19",
+      "parent_title": "Cross-Site Request Forgery (CSRF) Protection",
+      "severity": "CRITICAL",
+      "text": "All state-changing operations MUST be protected against CSRF using synchronizer tokens, double-submit cookies, or SameSite cookies.",
+      "detection_hints": [
+        "csrf",
+        "csrf_token",
+        "CSRF",
+        "_csrf",
+        "csrfmiddleware",
+        "anti_forgery"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-19.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-19",
+      "parent_title": "Cross-Site Request Forgery (CSRF) Protection",
+      "severity": "CRITICAL",
+      "text": "CSRF tokens MUST be unique per session and cryptographically random.",
+      "detection_hints": [
+        "csrf_secret",
+        "csrf_generation"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-19.3",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-19",
+      "parent_title": "Cross-Site Request Forgery (CSRF) Protection",
+      "severity": "CRITICAL",
+      "text": "CSRF tokens MUST be validated server-side for every state-changing request.",
+      "detection_hints": [
+        "csrf_verify",
+        "csrf_check",
+        "validate_csrf"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-20.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-20",
+      "parent_title": "Session Storage Security",
+      "severity": "CRITICAL",
+      "text": "Server-side session stores MUST use authenticated encryption. Plaintext session storage PROHIBITED.",
+      "detection_hints": [
+        "session_store",
+        "session_backend",
+        "file_sessions"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-20.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-20",
+      "parent_title": "Session Storage Security",
+      "severity": "CRITICAL",
+      "text": "Session stores MUST be isolated per application in shared hosting environments.",
+      "detection_hints": [
+        "shared_session",
+        "session_prefix"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-21.1",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-21",
+      "parent_title": "Session Event Logging",
+      "severity": "CRITICAL",
+      "text": "Session creation, destruction, timeout, and invalidation events MUST be logged with timestamp and user identifier.",
+      "detection_hints": [
+        "session_log",
+        "audit_log",
+        "session_event"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-21.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-21",
+      "parent_title": "Session Event Logging",
+      "severity": "CRITICAL",
+      "text": "Failed session validation attempts MUST be logged and monitored for session hijacking detection.",
+      "detection_hints": [
+        "session_failure",
+        "invalid_session"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-21.3",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-21",
+      "parent_title": "Session Event Logging",
+      "severity": "CRITICAL",
+      "text": "Session logs MUST NOT contain session IDs or tokens. Use opaque references.",
+      "detection_hints": [
+        "log_session_id",
+        "session_token_log"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-21.4",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-21",
+      "parent_title": "Session Event Logging",
+      "severity": "CRITICAL",
+      "text": "Session anomaly detection SHOULD alert on unusual patterns (rapid creation, geographic impossibility).",
+      "detection_hints": [
+        "session_anomaly",
+        "session_alert"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-01.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-01",
+      "parent_title": "Password Hashing",
+      "severity": "CRITICAL",
+      "text": "All passwords MUST be hashed using Argon2id (preferred), bcrypt, or scrypt. MD5, SHA-1, SHA-256 (unsalted), and custom hashing are PROHIBITED.",
+      "detection_hints": [
+        "md5",
+        "MD5",
+        "sha1",
+        "SHA1",
+        "sha256",
+        "hashlib.md5",
+        "hashlib.sha1",
+        "MessageDigest",
+        "bcrypt",
+        "argon2",
+        "scrypt",
+        "pbkdf2",
+        "hash(password)"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-01.2",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-01",
+      "parent_title": "Password Hashing",
+      "severity": "CRITICAL",
+      "text": "Password hashing MUST use a unique random salt per password of at least 16 bytes.",
+      "detection_hints": [
+        "salt",
+        "random_salt",
+        "os.urandom",
+        "SecureRandom"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-01.3",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-01",
+      "parent_title": "Password Hashing",
+      "severity": "CRITICAL",
+      "text": "Argon2id parameters MUST use minimum: memory 64MB, iterations 3, parallelism 1. Bcrypt minimum cost factor 12.",
+      "detection_hints": [
+        "argon2_params",
+        "bcrypt_rounds",
+        "cost_factor",
+        "work_factor"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-02.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-02",
+      "parent_title": "Credential Transmission",
+      "severity": "CRITICAL",
+      "text": "Credentials MUST only be transmitted over TLS 1.2+. HTTP transmission of passwords PROHIBITED.",
+      "detection_hints": [
+        "http://",
+        "TLS",
+        "SSL",
+        "plaintext"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-02.2",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-02",
+      "parent_title": "Credential Transmission",
+      "severity": "CRITICAL",
+      "text": "Passwords MUST be sent in the request body, never in URL parameters or headers.",
+      "detection_hints": [
+        "password",
+        "pwd",
+        "url_param",
+        "query_string"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-03.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-03",
+      "parent_title": "Brute Force Protection",
+      "severity": "CRITICAL",
+      "text": "Login endpoints MUST implement rate limiting. Maximum 5 failed attempts per account per 15 minutes.",
+      "detection_hints": [
+        "rate_limit",
+        "throttle",
+        "login_attempts",
+        "max_attempts",
+        "account_lockout"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-03.2",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-03",
+      "parent_title": "Brute Force Protection",
+      "severity": "CRITICAL",
+      "text": "Account lockout MUST be temporary (minimum 15 minutes) or require manual unlock. Permanent lockout creates denial of service.",
+      "detection_hints": [
+        "lockout_duration",
+        "unlock",
+        "temporary_lock"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-04.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-04",
+      "parent_title": "Multi-Factor Authentication",
+      "severity": "CRITICAL",
+      "text": "MFA MUST be available for all user accounts and REQUIRED for privileged accounts.",
+      "detection_hints": [
+        "mfa",
+        "2fa",
+        "totp",
+        "two_factor",
+        "multi_factor"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-04.2",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-04",
+      "parent_title": "Multi-Factor Authentication",
+      "severity": "CRITICAL",
+      "text": "MFA recovery codes MUST be single-use, cryptographically random, and stored hashed.",
+      "detection_hints": [
+        "recovery_code",
+        "backup_code",
+        "mfa_recovery"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-05.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-05",
+      "parent_title": "Password Policy",
+      "severity": "CRITICAL",
+      "text": "Minimum password length MUST be 12 characters. Maximum MUST be at least 128 characters.",
+      "detection_hints": [
+        "min_length",
+        "password_length",
+        "minlength",
+        "maxlength"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-05.2",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-05",
+      "parent_title": "Password Policy",
+      "severity": "CRITICAL",
+      "text": "Passwords MUST be checked against known breached password databases (e.g., HaveIBeenPwned).",
+      "detection_hints": [
+        "breached",
+        "pwned",
+        "compromised",
+        "password_check"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-06.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-06",
+      "parent_title": "Password Reset",
+      "severity": "CRITICAL",
+      "text": "Password reset tokens MUST be cryptographically random, single-use, and expire within 1 hour.",
+      "detection_hints": [
+        "reset_token",
+        "password_reset",
+        "forgot_password",
+        "token_expiry"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-06.2",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-06",
+      "parent_title": "Password Reset",
+      "severity": "CRITICAL",
+      "text": "Password reset MUST NOT reveal whether an account exists. Use generic messages.",
+      "detection_hints": [
+        "user_not_found",
+        "account_exists",
+        "email_not_found"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-07.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-07",
+      "parent_title": "Secure Authentication Response",
+      "severity": "CRITICAL",
+      "text": "Authentication failure responses MUST NOT distinguish between invalid username and invalid password.",
+      "detection_hints": [
+        "invalid_username",
+        "invalid_password",
+        "user_not_found",
+        "wrong_password"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-08.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-08",
+      "parent_title": "Session Authentication",
+      "severity": "CRITICAL",
+      "text": "Authentication state MUST be maintained server-side. Client-side authentication state alone is insufficient.",
+      "detection_hints": [
+        "client_auth",
+        "localStorage",
+        "sessionStorage",
+        "cookie_auth"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-09.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-09",
+      "parent_title": "OAuth 2.0 Implementation",
+      "severity": "CRITICAL",
+      "text": "OAuth MUST use Authorization Code flow with PKCE for public clients. Implicit flow PROHIBITED.",
+      "detection_hints": [
+        "implicit_flow",
+        "response_type=token",
+        "pkce",
+        "code_challenge",
+        "authorization_code"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-09.2",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-09",
+      "parent_title": "OAuth 2.0 Implementation",
+      "severity": "CRITICAL",
+      "text": "OAuth state parameter MUST be used and validated to prevent CSRF.",
+      "detection_hints": [
+        "oauth_state",
+        "state_param",
+        "state="
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-10.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-10",
+      "parent_title": "API Key Authentication",
+      "severity": "CRITICAL",
+      "text": "API keys MUST be transmitted in headers, never in URL parameters.",
+      "detection_hints": [
+        "api_key",
+        "apikey",
+        "?key=",
+        "&key=",
+        "x-api-key"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-11.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-11",
+      "parent_title": "JWT Security",
+      "severity": "CRITICAL",
+      "text": "JWT MUST use RS256 or ES256 algorithms. HS256 with weak secrets and 'none' algorithm PROHIBITED.",
+      "detection_hints": [
+        "jwt",
+        "JWT",
+        "jsonwebtoken",
+        "alg",
+        "HS256",
+        "none",
+        "algorithm"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-11.2",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-11",
+      "parent_title": "JWT Security",
+      "severity": "CRITICAL",
+      "text": "JWT MUST validate: signature, expiration (exp), issuer (iss), audience (aud). Clock skew tolerance maximum 30 seconds.",
+      "detection_hints": [
+        "jwt.verify",
+        "jwt.decode",
+        "verify=False",
+        "algorithms",
+        "exp",
+        "iss",
+        "aud"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-11.3",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-11",
+      "parent_title": "JWT Security",
+      "severity": "CRITICAL",
+      "text": "JWT secrets MUST be at least 256 bits for HMAC algorithms. RSA keys minimum 2048 bits.",
+      "detection_hints": [
+        "jwt_secret",
+        "JWT_SECRET",
+        "secret_key"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-12.1",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-12",
+      "parent_title": "Credential Storage",
+      "severity": "CRITICAL",
+      "text": "Plaintext passwords MUST NOT be stored anywhere \u2014 database, logs, files, or memory dumps.",
+      "detection_hints": [
+        "plaintext",
+        "clear_text",
+        "password_store"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AZ-01.1",
+      "domain": "Authorization",
+      "domain_code": "AZ",
+      "parent_code": "AZ-01",
+      "parent_title": "Access Control Enforcement",
+      "severity": "CRITICAL",
+      "text": "Authorization checks MUST be enforced server-side for every request to protected resources.",
+      "detection_hints": [
+        "authorize",
+        "is_admin",
+        "has_permission",
+        "access_control",
+        "rbac"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AZ-01.2",
+      "domain": "Authorization",
+      "domain_code": "AZ",
+      "parent_code": "AZ-01",
+      "parent_title": "Access Control Enforcement",
+      "severity": "CRITICAL",
+      "text": "Default access MUST be deny-all. Access granted only by explicit permission.",
+      "detection_hints": [
+        "default_deny",
+        "allow_all",
+        "permit_all",
+        "open_access"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AZ-02.1",
+      "domain": "Authorization",
+      "domain_code": "AZ",
+      "parent_code": "AZ-02",
+      "parent_title": "Role-Based Access Control",
+      "severity": "CRITICAL",
+      "text": "RBAC roles MUST follow the principle of least privilege. Overly broad roles PROHIBITED.",
+      "detection_hints": [
+        "role",
+        "admin",
+        "superuser",
+        "root",
+        "privilege"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AZ-02.2",
+      "domain": "Authorization",
+      "domain_code": "AZ",
+      "parent_code": "AZ-02",
+      "parent_title": "Role-Based Access Control",
+      "severity": "CRITICAL",
+      "text": "Role assignments MUST be auditable and logged.",
+      "detection_hints": [
+        "role_assignment",
+        "grant_role",
+        "add_role"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AZ-03.1",
+      "domain": "Authorization",
+      "domain_code": "AZ",
+      "parent_code": "AZ-03",
+      "parent_title": "Insecure Direct Object Reference (IDOR)",
+      "severity": "CRITICAL",
+      "text": "All data access MUST verify the requesting user has authorization for the specific object. Sequential/guessable IDs MUST be paired with authorization checks.",
+      "detection_hints": [
+        "IDOR",
+        "direct_reference",
+        "user_id",
+        "object_id",
+        "resource_id"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AZ-04.1",
+      "domain": "Authorization",
+      "domain_code": "AZ",
+      "parent_code": "AZ-04",
+      "parent_title": "Horizontal Privilege Escalation",
+      "severity": "CRITICAL",
+      "text": "Users MUST NOT be able to access other users' data by manipulating parameters, IDs, or paths.",
+      "detection_hints": [
+        "user_id",
+        "account_id",
+        "owner_check"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AZ-05.1",
+      "domain": "Authorization",
+      "domain_code": "AZ",
+      "parent_code": "AZ-05",
+      "parent_title": "Vertical Privilege Escalation",
+      "severity": "CRITICAL",
+      "text": "Admin functions MUST verify admin role on every request. Client-side role checks are insufficient.",
+      "detection_hints": [
+        "is_admin",
+        "admin_check",
+        "role_check",
+        "isAdmin",
+        "isAuthenticated"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AZ-06.1",
+      "domain": "Authorization",
+      "domain_code": "AZ",
+      "parent_code": "AZ-06",
+      "parent_title": "Function-Level Access Control",
+      "severity": "CRITICAL",
+      "text": "Every API endpoint and controller action MUST enforce authorization. Missing authorization middleware is a CRITICAL finding.",
+      "detection_hints": [
+        "@login_required",
+        "@auth",
+        "middleware",
+        "before_action",
+        "authorize"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AZ-07.1",
+      "domain": "Authorization",
+      "domain_code": "AZ",
+      "parent_code": "AZ-07",
+      "parent_title": "Path Traversal Prevention",
+      "severity": "CRITICAL",
+      "text": "File access MUST validate that resolved paths remain within allowed directories. Path traversal sequences (../) MUST be rejected.",
+      "detection_hints": [
+        "path_traversal",
+        "../",
+        "..\\",
+        "os.path.join",
+        "Path",
+        "realpath",
+        "normalize"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-01.1",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-01",
+      "parent_title": "Input Validation Strategy",
+      "severity": "CRITICAL",
+      "text": "All input MUST be validated server-side. Client-side validation alone is insufficient.",
+      "detection_hints": [
+        "validate",
+        "sanitize",
+        "input_check",
+        "server_side"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-01.2",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-01",
+      "parent_title": "Input Validation Strategy",
+      "severity": "CRITICAL",
+      "text": "Input validation MUST use allowlists (permitted values) over denylists (blocked values).",
+      "detection_hints": [
+        "whitelist",
+        "allowlist",
+        "blacklist",
+        "denylist"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-01.3",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-01",
+      "parent_title": "Input Validation Strategy",
+      "severity": "CRITICAL",
+      "text": "Input length MUST be validated against defined maximums for all fields.",
+      "detection_hints": [
+        "max_length",
+        "maxlength",
+        "input_length"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-02.1",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-02",
+      "parent_title": "Output Encoding",
+      "severity": "CRITICAL",
+      "text": "All output MUST be encoded for the context (HTML, JavaScript, URL, CSS, SQL) before rendering.",
+      "detection_hints": [
+        "encode",
+        "escape",
+        "html_escape",
+        "urlencode",
+        "markupsafe"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-02.2",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-02",
+      "parent_title": "Output Encoding",
+      "severity": "CRITICAL",
+      "text": "Template engines MUST use auto-escaping by default. Manual safe/raw markers require security review.",
+      "detection_hints": [
+        "autoescape",
+        "|safe",
+        "noescape",
+        "raw",
+        "innerHTML",
+        "dangerouslySetInnerHTML"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-03.1",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-03",
+      "parent_title": "HTTP Parameter Handling",
+      "severity": "CRITICAL",
+      "text": "HTTP parameter pollution MUST be handled by accepting only the first or last value, never concatenating.",
+      "detection_hints": [
+        "getall",
+        "getlist",
+        "multi_value"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-04.1",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-04",
+      "parent_title": "File Path Validation",
+      "severity": "CRITICAL",
+      "text": "User-supplied filenames MUST be sanitized. Directory traversal, null bytes, and special characters MUST be stripped or rejected.",
+      "detection_hints": [
+        "filename",
+        "file_path",
+        "os.path",
+        "path.join",
+        "../"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-05.1",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-05",
+      "parent_title": "SQL Injection Prevention",
+      "severity": "CRITICAL",
+      "text": "All queries MUST use parameterized queries or ORM query builders. String concatenation for SQL PROHIBITED.",
+      "detection_hints": [
+        "f\"SELECT",
+        "\"SELECT * FROM\" +",
+        "format(",
+        "cursor.execute(\"SELECT",
+        ".raw(",
+        "execute(",
+        "query(",
+        "sql ="
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-05.2",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-05",
+      "parent_title": "SQL Injection Prevention",
+      "severity": "CRITICAL",
+      "text": "Dynamic table/column names MUST be validated against an allowlist. Parameterized queries cannot protect identifiers.",
+      "detection_hints": [
+        "table_name",
+        "column_name",
+        "ORDER BY",
+        "dynamic_sql"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-06.1",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-06",
+      "parent_title": "Command Injection Prevention",
+      "severity": "CRITICAL",
+      "text": "OS command execution MUST use parameterized APIs (subprocess with list args). Shell=True PROHIBITED.",
+      "detection_hints": [
+        "os.system",
+        "subprocess.call",
+        "shell=True",
+        "exec(",
+        "eval(",
+        "system(",
+        "popen",
+        "Runtime.exec",
+        "child_process"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-06.2",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-06",
+      "parent_title": "Command Injection Prevention",
+      "severity": "CRITICAL",
+      "text": "User input MUST NEVER be incorporated into OS commands, even with sanitization.",
+      "detection_hints": [
+        "cmd +",
+        "command +",
+        "shell_command"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-07.1",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-07",
+      "parent_title": "LDAP Injection Prevention",
+      "severity": "CRITICAL",
+      "text": "LDAP queries MUST use parameterized filters. String concatenation for LDAP filters PROHIBITED.",
+      "detection_hints": [
+        "ldap",
+        "LDAP",
+        "ldap_search",
+        "filter="
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-08.1",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-08",
+      "parent_title": "SSRF Prevention",
+      "severity": "CRITICAL",
+      "text": "Server-side HTTP requests MUST validate destination URLs against an allowlist. Requests to internal/private IPs PROHIBITED.",
+      "detection_hints": [
+        "requests.get",
+        "urllib",
+        "fetch(",
+        "http_client",
+        "url_fetch",
+        "ssrf",
+        "127.0.0.1",
+        "localhost",
+        "169.254"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-08.2",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-08",
+      "parent_title": "SSRF Prevention",
+      "severity": "CRITICAL",
+      "text": "URL validation MUST resolve DNS and verify the IP is not in private ranges before connecting.",
+      "detection_hints": [
+        "dns_resolve",
+        "private_ip",
+        "internal_network"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-09.1",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-09",
+      "parent_title": "Deserialization Security",
+      "severity": "CRITICAL",
+      "text": "Untrusted data MUST NOT be deserialized using unsafe deserializers (pickle, yaml.load, ObjectInputStream). Use safe alternatives.",
+      "detection_hints": [
+        "pickle",
+        "pickle.loads",
+        "yaml.load",
+        "yaml.unsafe_load",
+        "Marshal.load",
+        "ObjectInputStream",
+        "unserialize",
+        "readObject",
+        "json.loads"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-09.2",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-09",
+      "parent_title": "Deserialization Security",
+      "severity": "CRITICAL",
+      "text": "If deserialization of complex objects is required, implement strict type allowlists.",
+      "detection_hints": [
+        "deserialize",
+        "unmarshal",
+        "type_check"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-10.1",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-10",
+      "parent_title": "XML External Entity (XXE) Prevention",
+      "severity": "CRITICAL",
+      "text": "XML parsers MUST disable external entity processing and DTD processing.",
+      "detection_hints": [
+        "xml",
+        "XML",
+        "etree",
+        "SAXParser",
+        "DocumentBuilder",
+        "external_entity",
+        "DOCTYPE",
+        "ENTITY"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "XS-01.1",
+      "domain": "Cross-Site Scripting",
+      "domain_code": "XS",
+      "parent_code": "XS-01",
+      "parent_title": "Content Security Policy",
+      "severity": "CRITICAL",
+      "text": "A Content-Security-Policy header MUST be deployed. unsafe-inline and unsafe-eval MUST NOT be used in script-src.",
+      "detection_hints": [
+        "Content-Security-Policy",
+        "CSP",
+        "unsafe-inline",
+        "unsafe-eval",
+        "script-src"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "XS-02.1",
+      "domain": "Cross-Site Scripting",
+      "domain_code": "XS",
+      "parent_code": "XS-02",
+      "parent_title": "DOM-Based XSS Prevention",
+      "severity": "CRITICAL",
+      "text": "User input MUST NOT be inserted into the DOM via innerHTML, outerHTML, document.write, or eval. Use textContent or safe DOM APIs.",
+      "detection_hints": [
+        "innerHTML",
+        "outerHTML",
+        "document.write",
+        "eval(",
+        "insertAdjacentHTML",
+        "dangerouslySetInnerHTML"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "XS-03.1",
+      "domain": "Cross-Site Scripting",
+      "domain_code": "XS",
+      "parent_code": "XS-03",
+      "parent_title": "Reflected XSS Prevention",
+      "severity": "CRITICAL",
+      "text": "All user input reflected in responses MUST be context-appropriately encoded. URL parameters reflected in HTML MUST be HTML-encoded.",
+      "detection_hints": [
+        "reflect",
+        "echo",
+        "print(request",
+        "render_template",
+        "response.write"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "XS-04.1",
+      "domain": "Cross-Site Scripting",
+      "domain_code": "XS",
+      "parent_code": "XS-04",
+      "parent_title": "Stored XSS Prevention",
+      "severity": "CRITICAL",
+      "text": "User-generated content stored in databases MUST be encoded on output, not just on input. Both input validation and output encoding REQUIRED.",
+      "detection_hints": [
+        "stored_xss",
+        "user_content",
+        "comment",
+        "post",
+        "message"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "XS-05.1",
+      "domain": "Cross-Site Scripting",
+      "domain_code": "XS",
+      "parent_code": "XS-05",
+      "parent_title": "X-XSS-Protection and X-Content-Type-Options",
+      "severity": "CRITICAL",
+      "text": "X-Content-Type-Options: nosniff MUST be set on all responses. X-XSS-Protection: 0 MUST be set (defer to CSP).",
+      "detection_hints": [
+        "X-Content-Type-Options",
+        "nosniff",
+        "X-XSS-Protection"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AP-01.1",
+      "domain": "API Security",
+      "domain_code": "AP",
+      "parent_code": "AP-01",
+      "parent_title": "API Authentication",
+      "severity": "CRITICAL",
+      "text": "All API endpoints MUST require authentication except explicitly designated public endpoints.",
+      "detection_hints": [
+        "api_auth",
+        "unauthenticated",
+        "public_api",
+        "@login_required"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AP-02.1",
+      "domain": "API Security",
+      "domain_code": "AP",
+      "parent_code": "AP-02",
+      "parent_title": "API Rate Limiting",
+      "severity": "CRITICAL",
+      "text": "All API endpoints MUST enforce rate limiting to prevent abuse. Rate limits MUST be per-user or per-API-key.",
+      "detection_hints": [
+        "rate_limit",
+        "throttle",
+        "api_limit",
+        "429",
+        "too_many_requests"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AP-03.1",
+      "domain": "API Security",
+      "domain_code": "AP",
+      "parent_code": "AP-03",
+      "parent_title": "API Input Validation",
+      "severity": "CRITICAL",
+      "text": "API endpoints MUST validate request body schema, content type, and parameter types. Unexpected fields MUST be rejected.",
+      "detection_hints": [
+        "schema_validation",
+        "content_type",
+        "json_schema",
+        "request_validation"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AP-04.1",
+      "domain": "API Security",
+      "domain_code": "AP",
+      "parent_code": "AP-04",
+      "parent_title": "API Versioning",
+      "severity": "CRITICAL",
+      "text": "APIs MUST be versioned. Deprecated versions MUST have a sunset date and migration path.",
+      "detection_hints": [
+        "api_version",
+        "v1",
+        "v2",
+        "versioning"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AP-05.1",
+      "domain": "API Security",
+      "domain_code": "AP",
+      "parent_code": "AP-05",
+      "parent_title": "API Error Handling",
+      "severity": "CRITICAL",
+      "text": "API error responses MUST NOT expose internal implementation details, stack traces, or database errors.",
+      "detection_hints": [
+        "traceback",
+        "stack_trace",
+        "debug",
+        "internal_error",
+        "500"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AP-06.1",
+      "domain": "API Security",
+      "domain_code": "AP",
+      "parent_code": "AP-06",
+      "parent_title": "GraphQL Security",
+      "severity": "CRITICAL",
+      "text": "GraphQL endpoints MUST disable introspection in production and enforce query depth/complexity limits.",
+      "detection_hints": [
+        "graphql",
+        "introspection",
+        "query_depth",
+        "query_complexity"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "CR-01.1",
+      "domain": "Cryptography & Secrets",
+      "domain_code": "CR",
+      "parent_code": "CR-01",
+      "parent_title": "Encryption Algorithms",
+      "severity": "CRITICAL",
+      "text": "Symmetric encryption MUST use AES-256 (GCM mode preferred). DES, 3DES, RC4, Blowfish PROHIBITED.",
+      "detection_hints": [
+        "DES",
+        "3DES",
+        "RC4",
+        "Blowfish",
+        "AES",
+        "AES-256",
+        "GCM",
+        "ECB"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "yaml",
+        "json",
+        "env",
+        "properties",
+        "toml",
+        "nginx"
+      ]
+    },
+    {
+      "id": "CR-02.1",
+      "domain": "Cryptography & Secrets",
+      "domain_code": "CR",
+      "parent_code": "CR-02",
+      "parent_title": "Key Management",
+      "severity": "CRITICAL",
+      "text": "Encryption keys MUST be managed through a key management service. Hardcoded keys PROHIBITED.",
+      "detection_hints": [
+        "encryption_key",
+        "secret_key",
+        "KEY=",
+        "hardcoded_key"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "yaml",
+        "json",
+        "env",
+        "properties",
+        "toml",
+        "nginx"
+      ]
+    },
+    {
+      "id": "CR-03.1",
+      "domain": "Cryptography & Secrets",
+      "domain_code": "CR",
+      "parent_code": "CR-03",
+      "parent_title": "Hashing Algorithms",
+      "severity": "CRITICAL",
+      "text": "Cryptographic hashing MUST use SHA-256 or SHA-3. MD5 and SHA-1 PROHIBITED for security purposes.",
+      "detection_hints": [
+        "md5",
+        "MD5",
+        "sha1",
+        "SHA1",
+        "hashlib.md5",
+        "hashlib.sha1"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "yaml",
+        "json",
+        "env",
+        "properties",
+        "toml",
+        "nginx"
+      ]
+    },
+    {
+      "id": "CR-04.1",
+      "domain": "Cryptography & Secrets",
+      "domain_code": "CR",
+      "parent_code": "CR-04",
+      "parent_title": "TLS Configuration",
+      "severity": "CRITICAL",
+      "text": "All connections MUST use TLS 1.2 or higher. SSLv3, TLS 1.0, TLS 1.1 PROHIBITED.",
+      "detection_hints": [
+        "SSLv3",
+        "TLSv1",
+        "TLSv1.0",
+        "TLSv1.1",
+        "ssl_protocols",
+        "tls_version",
+        "PROTOCOL_TLSv1"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "yaml",
+        "json",
+        "env",
+        "properties",
+        "toml",
+        "nginx"
+      ]
+    },
+    {
+      "id": "CR-05.1",
+      "domain": "Cryptography & Secrets",
+      "domain_code": "CR",
+      "parent_code": "CR-05",
+      "parent_title": "Secret Storage",
+      "severity": "CRITICAL",
+      "text": "Secrets MUST be stored in approved vaults (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault). Plaintext secrets in code, config files, VCS, environment variable files, and properties files PROHIBITED.",
+      "detection_hints": [
+        "password=",
+        "api_key=",
+        "secret=",
+        "AWS_SECRET",
+        "PRIVATE_KEY",
+        "connection_string",
+        "hardcoded",
+        "plaintext"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "yaml",
+        "json",
+        "env",
+        "properties",
+        "toml",
+        "nginx"
+      ]
+    },
+    {
+      "id": "CR-06.1",
+      "domain": "Cryptography & Secrets",
+      "domain_code": "CR",
+      "parent_code": "CR-06",
+      "parent_title": "Random Number Generation",
+      "severity": "CRITICAL",
+      "text": "Security-sensitive random values MUST use cryptographic RNG (secrets module, SecureRandom). Math.random(), random module without secrets PROHIBITED.",
+      "detection_hints": [
+        "random.random",
+        "Math.random",
+        "rand()",
+        "secrets",
+        "SecureRandom",
+        "os.urandom",
+        "crypto.randomBytes"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "yaml",
+        "json",
+        "env",
+        "properties",
+        "toml",
+        "nginx"
+      ]
+    },
+    {
+      "id": "CR-07.1",
+      "domain": "Cryptography & Secrets",
+      "domain_code": "CR",
+      "parent_code": "CR-07",
+      "parent_title": "Certificate Validation",
+      "severity": "CRITICAL",
+      "text": "TLS certificate validation MUST NOT be disabled. verify=False, InsecureSkipVerify, NODE_TLS_REJECT_UNAUTHORIZED=0 PROHIBITED.",
+      "detection_hints": [
+        "verify=False",
+        "InsecureSkipVerify",
+        "REJECT_UNAUTHORIZED",
+        "check_hostname",
+        "ssl._create_unverified_context"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "yaml",
+        "json",
+        "env",
+        "properties",
+        "toml",
+        "nginx"
+      ]
+    },
+    {
+      "id": "EL-01.1",
+      "domain": "Error Handling & Logging",
+      "domain_code": "EL",
+      "parent_code": "EL-01",
+      "parent_title": "Error Information Disclosure",
+      "severity": "CRITICAL",
+      "text": "Production error responses MUST NOT expose stack traces, SQL queries, internal paths, or framework details. Generic error messages only.",
+      "detection_hints": [
+        "DEBUG=True",
+        "debug=true",
+        "traceback",
+        "stack_trace",
+        "show_errors",
+        "display_errors"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "EL-01.2",
+      "domain": "Error Handling & Logging",
+      "domain_code": "EL",
+      "parent_code": "EL-01",
+      "parent_title": "Error Information Disclosure",
+      "severity": "CRITICAL",
+      "text": "Custom error pages MUST be configured for all HTTP error codes (400, 401, 403, 404, 500).",
+      "detection_hints": [
+        "error_page",
+        "errorhandler",
+        "exception_handler"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "EL-02.1",
+      "domain": "Error Handling & Logging",
+      "domain_code": "EL",
+      "parent_code": "EL-02",
+      "parent_title": "Exception Handling",
+      "severity": "CRITICAL",
+      "text": "All exceptions MUST be caught and handled. Unhandled exceptions MUST NOT propagate to users.",
+      "detection_hints": [
+        "except Exception",
+        "catch(Exception",
+        "unhandled",
+        "bare_except"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "EL-02.2",
+      "domain": "Error Handling & Logging",
+      "domain_code": "EL",
+      "parent_code": "EL-02",
+      "parent_title": "Exception Handling",
+      "severity": "CRITICAL",
+      "text": "Empty catch/except blocks PROHIBITED. All exceptions MUST be logged.",
+      "detection_hints": [
+        "pass",
+        "catch {}",
+        "except: pass",
+        "empty_catch"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "EL-03.1",
+      "domain": "Error Handling & Logging",
+      "domain_code": "EL",
+      "parent_code": "EL-03",
+      "parent_title": "Security Event Logging",
+      "severity": "CRITICAL",
+      "text": "Authentication events (login, logout, failed attempts, lockouts) MUST be logged with timestamp, user ID, IP, and outcome.",
+      "detection_hints": [
+        "login_log",
+        "auth_log",
+        "audit_trail",
+        "security_event"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "EL-03.2",
+      "domain": "Error Handling & Logging",
+      "domain_code": "EL",
+      "parent_code": "EL-03",
+      "parent_title": "Security Event Logging",
+      "severity": "CRITICAL",
+      "text": "Authorization failures (access denied) MUST be logged with the resource, action, and user.",
+      "detection_hints": [
+        "access_denied",
+        "forbidden",
+        "unauthorized_log"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "EL-04.1",
+      "domain": "Error Handling & Logging",
+      "domain_code": "EL",
+      "parent_code": "EL-04",
+      "parent_title": "Log Content Safety",
+      "severity": "CRITICAL",
+      "text": "Logs MUST NOT contain passwords, tokens, session IDs, credit card numbers, SSNs, or other sensitive data.",
+      "detection_hints": [
+        "log(password",
+        "log(token",
+        "log(session",
+        "logger.info(",
+        "console.log(",
+        "print(password"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "EL-04.2",
+      "domain": "Error Handling & Logging",
+      "domain_code": "EL",
+      "parent_code": "EL-04",
+      "parent_title": "Log Content Safety",
+      "severity": "CRITICAL",
+      "text": "Log injection MUST be prevented by sanitizing user input before logging. Newlines and control characters MUST be stripped.",
+      "detection_hints": [
+        "log_injection",
+        "\\n",
+        "\\r",
+        "CRLF"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SH-01.1",
+      "domain": "Security Headers",
+      "domain_code": "SH",
+      "parent_code": "SH-01",
+      "parent_title": "Strict-Transport-Security",
+      "severity": "CRITICAL",
+      "text": "HSTS header MUST be set with max-age >= 31536000 (1 year). includeSubDomains RECOMMENDED.",
+      "detection_hints": [
+        "Strict-Transport-Security",
+        "HSTS",
+        "max-age",
+        "includeSubDomains"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "nginx",
+        "apache"
+      ]
+    },
+    {
+      "id": "SH-02.1",
+      "domain": "Security Headers",
+      "domain_code": "SH",
+      "parent_code": "SH-02",
+      "parent_title": "Content-Security-Policy",
+      "severity": "CRITICAL",
+      "text": "CSP header MUST be deployed on all pages. default-src 'self' as baseline.",
+      "detection_hints": [
+        "Content-Security-Policy",
+        "CSP",
+        "default-src"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "nginx",
+        "apache"
+      ]
+    },
+    {
+      "id": "SH-03.1",
+      "domain": "Security Headers",
+      "domain_code": "SH",
+      "parent_code": "SH-03",
+      "parent_title": "X-Frame-Options",
+      "severity": "CRITICAL",
+      "text": "X-Frame-Options MUST be set to DENY or SAMEORIGIN to prevent clickjacking.",
+      "detection_hints": [
+        "X-Frame-Options",
+        "DENY",
+        "SAMEORIGIN",
+        "clickjacking",
+        "frame-ancestors"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "nginx",
+        "apache"
+      ]
+    },
+    {
+      "id": "SH-04.1",
+      "domain": "Security Headers",
+      "domain_code": "SH",
+      "parent_code": "SH-04",
+      "parent_title": "X-Content-Type-Options",
+      "severity": "CRITICAL",
+      "text": "X-Content-Type-Options: nosniff MUST be set on all responses.",
+      "detection_hints": [
+        "X-Content-Type-Options",
+        "nosniff"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "nginx",
+        "apache"
+      ]
+    },
+    {
+      "id": "SH-05.1",
+      "domain": "Security Headers",
+      "domain_code": "SH",
+      "parent_code": "SH-05",
+      "parent_title": "Referrer-Policy",
+      "severity": "CRITICAL",
+      "text": "Referrer-Policy MUST be set to strict-origin-when-cross-origin or more restrictive.",
+      "detection_hints": [
+        "Referrer-Policy",
+        "referrer",
+        "no-referrer"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "nginx",
+        "apache"
+      ]
+    },
+    {
+      "id": "SH-06.1",
+      "domain": "Security Headers",
+      "domain_code": "SH",
+      "parent_code": "SH-06",
+      "parent_title": "Permissions-Policy",
+      "severity": "CRITICAL",
+      "text": "Permissions-Policy MUST restrict access to sensitive browser features (camera, microphone, geolocation) to same-origin.",
+      "detection_hints": [
+        "Permissions-Policy",
+        "Feature-Policy",
+        "camera",
+        "microphone",
+        "geolocation"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "nginx",
+        "apache"
+      ]
+    },
+    {
+      "id": "SH-07.1",
+      "domain": "Security Headers",
+      "domain_code": "SH",
+      "parent_code": "SH-07",
+      "parent_title": "CORS Configuration",
+      "severity": "CRITICAL",
+      "text": "Access-Control-Allow-Origin MUST NOT use wildcard (*) for authenticated endpoints. Specific origins only.",
+      "detection_hints": [
+        "Access-Control-Allow-Origin",
+        "CORS",
+        "cors",
+        "allow_origin",
+        "*"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "nginx",
+        "apache"
+      ]
+    },
+    {
+      "id": "SH-07.2",
+      "domain": "Security Headers",
+      "domain_code": "SH",
+      "parent_code": "SH-07",
+      "parent_title": "CORS Configuration",
+      "severity": "CRITICAL",
+      "text": "CORS credentials (Access-Control-Allow-Credentials: true) MUST NOT be combined with wildcard origin.",
+      "detection_hints": [
+        "Allow-Credentials",
+        "credentials",
+        "withCredentials"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "nginx",
+        "apache"
+      ]
+    },
+    {
+      "id": "SH-07.3",
+      "domain": "Security Headers",
+      "domain_code": "SH",
+      "parent_code": "SH-07",
+      "parent_title": "CORS Configuration",
+      "severity": "CRITICAL",
+      "text": "CORS preflight responses MUST validate the Origin header against an allowlist.",
+      "detection_hints": [
+        "OPTIONS",
+        "preflight",
+        "origin_check"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php",
+        "nginx",
+        "apache"
+      ]
+    },
+    {
+      "id": "FU-01.1",
+      "domain": "File Upload Security",
+      "domain_code": "FU",
+      "parent_code": "FU-01",
+      "parent_title": "File Upload Validation",
+      "severity": "CRITICAL",
+      "text": "Uploaded files MUST be validated by magic bytes (file signature), not just file extension.",
+      "detection_hints": [
+        "file_upload",
+        "upload",
+        "magic_bytes",
+        "file_type",
+        "mime_type",
+        "content_type"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "FU-01.2",
+      "domain": "File Upload Security",
+      "domain_code": "FU",
+      "parent_code": "FU-01",
+      "parent_title": "File Upload Validation",
+      "severity": "CRITICAL",
+      "text": "File extensions MUST be validated against an allowlist. Executable extensions (.exe, .sh, .bat, .php, .jsp) PROHIBITED.",
+      "detection_hints": [
+        "extension",
+        "file_ext",
+        "allowed_extensions",
+        ".exe",
+        ".sh",
+        ".php"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "FU-02.1",
+      "domain": "File Upload Security",
+      "domain_code": "FU",
+      "parent_code": "FU-02",
+      "parent_title": "File Storage",
+      "severity": "CRITICAL",
+      "text": "Uploaded files MUST be stored outside the web root with randomly generated names. Original filenames MUST NOT be used for storage.",
+      "detection_hints": [
+        "upload_dir",
+        "web_root",
+        "static",
+        "public",
+        "media"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "FU-03.1",
+      "domain": "File Upload Security",
+      "domain_code": "FU",
+      "parent_code": "FU-03",
+      "parent_title": "File Size Limits",
+      "severity": "CRITICAL",
+      "text": "File upload size MUST be limited server-side. Maximum size varies by use case but MUST be explicitly configured.",
+      "detection_hints": [
+        "max_file_size",
+        "upload_limit",
+        "MAX_CONTENT_LENGTH",
+        "file_size"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "FU-04.1",
+      "domain": "File Upload Security",
+      "domain_code": "FU",
+      "parent_code": "FU-04",
+      "parent_title": "Image Upload Processing",
+      "severity": "CRITICAL",
+      "text": "Uploaded images MUST be re-processed (re-encoded) to strip metadata and prevent image-based attacks.",
+      "detection_hints": [
+        "image_upload",
+        "exif",
+        "metadata",
+        "reprocess",
+        "thumbnail"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "DS-01.1",
+      "domain": "Dependency & Supply Chain",
+      "domain_code": "DS",
+      "parent_code": "DS-01",
+      "parent_title": "Dependency Version Pinning",
+      "severity": "CRITICAL",
+      "text": "All dependencies MUST be pinned to exact versions in production. Ranges (^, ~, >=) PROHIBITED in lockfiles.",
+      "detection_hints": [
+        "package.json",
+        "requirements.txt",
+        "Gemfile",
+        "pom.xml",
+        "^",
+        "~",
+        ">=",
+        "*",
+        "latest"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "DS-02.1",
+      "domain": "Dependency & Supply Chain",
+      "domain_code": "DS",
+      "parent_code": "DS-02",
+      "parent_title": "Vulnerability Scanning",
+      "severity": "CRITICAL",
+      "text": "Dependencies MUST be scanned for known vulnerabilities before deployment. CI/CD MUST fail on critical/high CVEs.",
+      "detection_hints": [
+        "npm audit",
+        "safety check",
+        "snyk",
+        "dependabot",
+        "CVE"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "DS-03.1",
+      "domain": "Dependency & Supply Chain",
+      "domain_code": "DS",
+      "parent_code": "DS-03",
+      "parent_title": "Supply Chain Integrity",
+      "severity": "CRITICAL",
+      "text": "Dependencies MUST be sourced from verified registries. Lockfiles MUST include integrity hashes.",
+      "detection_hints": [
+        "integrity",
+        "checksum",
+        "hash",
+        "registry",
+        "npm_config_registry"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "DP-01.1",
+      "domain": "Data Protection & Privacy",
+      "domain_code": "DP",
+      "parent_code": "DP-01",
+      "parent_title": "Data Classification",
+      "severity": "CRITICAL",
+      "text": "All data MUST be classified by sensitivity (public, internal, confidential, restricted). Handling rules MUST match classification.",
+      "detection_hints": [
+        "classification",
+        "sensitivity",
+        "confidential",
+        "restricted"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "DP-02.1",
+      "domain": "Data Protection & Privacy",
+      "domain_code": "DP",
+      "parent_code": "DP-02",
+      "parent_title": "Encryption at Rest",
+      "severity": "CRITICAL",
+      "text": "Confidential and restricted data MUST be encrypted at rest using AES-256.",
+      "detection_hints": [
+        "encryption_at_rest",
+        "disk_encryption",
+        "database_encryption",
+        "encrypted_field"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "DP-03.1",
+      "domain": "Data Protection & Privacy",
+      "domain_code": "DP",
+      "parent_code": "DP-03",
+      "parent_title": "Encryption in Transit",
+      "severity": "CRITICAL",
+      "text": "All data in transit MUST be encrypted using TLS 1.2+. Unencrypted HTTP for sensitive data PROHIBITED.",
+      "detection_hints": [
+        "http://",
+        "TLS",
+        "SSL",
+        "encryption_transit"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "DP-04.1",
+      "domain": "Data Protection & Privacy",
+      "domain_code": "DP",
+      "parent_code": "DP-04",
+      "parent_title": "Data Minimization",
+      "severity": "CRITICAL",
+      "text": "Applications MUST only collect and retain data that is necessary. Excessive data collection PROHIBITED.",
+      "detection_hints": [
+        "data_collection",
+        "minimize",
+        "retention",
+        "purpose_limitation"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "DP-05.1",
+      "domain": "Data Protection & Privacy",
+      "domain_code": "DP",
+      "parent_code": "DP-05",
+      "parent_title": "Data Retention",
+      "severity": "CRITICAL",
+      "text": "Data retention periods MUST be defined and enforced. Expired data MUST be securely deleted.",
+      "detection_hints": [
+        "retention_period",
+        "data_deletion",
+        "ttl",
+        "expiry"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "DP-06.1",
+      "domain": "Data Protection & Privacy",
+      "domain_code": "DP",
+      "parent_code": "DP-06",
+      "parent_title": "PII Handling",
+      "severity": "CRITICAL",
+      "text": "PII MUST NOT appear in logs, URLs, cookies, or client-side storage. Display MUST be masked; full reveal only on explicit logged action. Bulk export requires elevated authorization and logging.",
+      "detection_hints": [
+        "PII",
+        "personal_data",
+        "ssn",
+        "email",
+        "phone",
+        "address",
+        "log(",
+        "url",
+        "cookie",
+        "localStorage"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-09.3",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-09",
+      "parent_title": "Session Fixation Prevention",
+      "severity": "CRITICAL",
+      "text": "Pre-authentication session data MUST NOT be trusted after authentication. Session data migration requires explicit validation.",
+      "detection_hints": [
+        "session_data",
+        "migrate_session"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-10.3",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-10",
+      "parent_title": "Session Invalidation on Logout",
+      "severity": "CRITICAL",
+      "text": "Logout MUST clear all related tokens including refresh tokens, remember-me tokens, and API tokens.",
+      "detection_hints": [
+        "refresh_token",
+        "logout_tokens"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-13.3",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-13",
+      "parent_title": "Idle Session Timeout",
+      "severity": "CRITICAL",
+      "text": "Session timeout warnings SHOULD be displayed to users before automatic logout.",
+      "detection_hints": [
+        "timeout_warning",
+        "session_warning"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-14.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-14",
+      "parent_title": "Absolute Session Timeout",
+      "severity": "CRITICAL",
+      "text": "Absolute timeout MUST be enforced independently of idle timeout. Both MUST be applied.",
+      "detection_hints": [
+        "absolute_expire",
+        "max_session"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-15.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-15",
+      "parent_title": "Session Data Protection",
+      "severity": "CRITICAL",
+      "text": "Session data MUST be validated for integrity on every request. Tamper detection REQUIRED for client-side session stores.",
+      "detection_hints": [
+        "session_integrity",
+        "signed_cookie",
+        "hmac"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-16.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-16",
+      "parent_title": "Session Token Binding",
+      "severity": "CRITICAL",
+      "text": "Token binding changes MUST invalidate the session, not just log a warning.",
+      "detection_hints": [
+        "binding_change",
+        "ip_change"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-18.2",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-18",
+      "parent_title": "Session Management in APIs",
+      "severity": "CRITICAL",
+      "text": "API tokens MUST have scoped permissions. Full-access tokens for limited operations PROHIBITED.",
+      "detection_hints": [
+        "token_scope",
+        "api_scope",
+        "permissions"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-19.4",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-19",
+      "parent_title": "Cross-Site Request Forgery (CSRF) Protection",
+      "severity": "CRITICAL",
+      "text": "CSRF protection MUST be applied to all forms and AJAX requests that modify state.",
+      "detection_hints": [
+        "ajax_csrf",
+        "form_csrf",
+        "X-CSRF-Token"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-20.3",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-20",
+      "parent_title": "Session Storage Security",
+      "severity": "CRITICAL",
+      "text": "Session stores MUST implement automatic expiration. Orphaned sessions MUST be cleaned up.",
+      "detection_hints": [
+        "session_cleanup",
+        "session_gc",
+        "expire_sessions"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-21.5",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-21",
+      "parent_title": "Session Event Logging",
+      "severity": "CRITICAL",
+      "text": "Concurrent session violations MUST be logged and alerted.",
+      "detection_hints": [
+        "concurrent_violation",
+        "session_conflict"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "SM-21.6",
+      "domain": "Session Management",
+      "domain_code": "SM",
+      "parent_code": "SM-21",
+      "parent_title": "Session Event Logging",
+      "severity": "CRITICAL",
+      "text": "Session store failures MUST trigger alerts and graceful degradation, not silent data loss.",
+      "detection_hints": [
+        "session_store_error",
+        "store_failure"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-03.3",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-03",
+      "parent_title": "Brute Force Protection",
+      "severity": "CRITICAL",
+      "text": "CAPTCHA or progressive delays MUST be implemented after repeated failed login attempts.",
+      "detection_hints": [
+        "captcha",
+        "recaptcha",
+        "progressive_delay"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-05.3",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-05",
+      "parent_title": "Password Policy",
+      "severity": "CRITICAL",
+      "text": "Password composition rules SHOULD NOT restrict character sets. All Unicode characters MUST be allowed.",
+      "detection_hints": [
+        "password_chars",
+        "special_chars",
+        "unicode_password"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-06.3",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-06",
+      "parent_title": "Password Reset",
+      "severity": "CRITICAL",
+      "text": "Password reset flows MUST invalidate all existing sessions after successful password change.",
+      "detection_hints": [
+        "reset_sessions",
+        "invalidate_after_reset"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-09.3",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-09",
+      "parent_title": "OAuth 2.0 Implementation",
+      "severity": "CRITICAL",
+      "text": "OAuth redirect URIs MUST be validated against a strict allowlist. Open redirects PROHIBITED.",
+      "detection_hints": [
+        "redirect_uri",
+        "callback_url",
+        "open_redirect"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-11.4",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-11",
+      "parent_title": "JWT Security",
+      "severity": "CRITICAL",
+      "text": "JWT refresh tokens MUST have bounded lifetime and MUST be rotated on use. Reuse of consumed refresh tokens MUST invalidate the entire token family.",
+      "detection_hints": [
+        "refresh_token",
+        "token_rotation",
+        "token_family"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AU-12.2",
+      "domain": "Authentication",
+      "domain_code": "AU",
+      "parent_code": "AU-12",
+      "parent_title": "Credential Storage",
+      "severity": "CRITICAL",
+      "text": "Temporary credentials in memory MUST be zeroed after use. Garbage collection alone is insufficient.",
+      "detection_hints": [
+        "credential_memory",
+        "zero_memory",
+        "secure_wipe"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "AZ-07.2",
+      "domain": "Authorization",
+      "domain_code": "AZ",
+      "parent_code": "AZ-07",
+      "parent_title": "Path Traversal Prevention",
+      "severity": "CRITICAL",
+      "text": "Symbolic links MUST be resolved and validated. Symlink-based path traversal MUST be prevented.",
+      "detection_hints": [
+        "symlink",
+        "symbolic_link",
+        "readlink",
+        "os.readlink"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-10.2",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-10",
+      "parent_title": "XML External Entity (XXE) Prevention",
+      "severity": "CRITICAL",
+      "text": "XML parsers MUST disable XInclude processing and external parameter entities.",
+      "detection_hints": [
+        "XInclude",
+        "xinclude",
+        "parameter_entity"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    },
+    {
+      "id": "IV-01.4",
+      "domain": "Input Validation & Output Encoding",
+      "domain_code": "IV",
+      "parent_code": "IV-01",
+      "parent_title": "Input Validation Strategy",
+      "severity": "CRITICAL",
+      "text": "Regular expressions used for input validation MUST be tested for ReDoS vulnerability. Catastrophic backtracking patterns PROHIBITED.",
+      "detection_hints": [
+        "regex",
+        "re.compile",
+        "ReDoS",
+        "backtracking",
+        "Pattern"
+      ],
+      "applies_to": [
+        "python",
+        "javascript",
+        "java",
+        "csharp",
+        "go",
+        "ruby",
+        "php"
+      ]
+    }
+  ]
+}

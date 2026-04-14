@@ -1,0 +1,14 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+knowledge/chroma_store/
+*.egg-info/
+dist/
+build/
+.python-version
+*.db
+.DS_Store
+Thumbs.db
