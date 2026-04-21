@@ -1,5 +1,0 @@
-*.safetensors filter=lfs diff=lfs merge=lfs -text
-*.bin filter=lfs diff=lfs merge=lfs -text
-*.onnx filter=lfs diff=lfs merge=lfs -text
-models/** filter=lfs diff=lfs merge=lfs -text
-knowledge/chroma_store/*.bin filter=lfs diff=lfs merge=lfs -text
