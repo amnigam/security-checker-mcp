@@ -8,11 +8,6 @@ dependencies = [
     "chromadb>=0.5.0",
 ]
 
-[project.optional-dependencies]
-semantic = [
-    "sentence-transformers>=3.0.0",
-]
-
 [project.scripts]
 security-checker-mcp = "security_checker.mcp_server:main"
 
