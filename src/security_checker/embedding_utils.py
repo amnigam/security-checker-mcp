@@ -14,11 +14,23 @@ def get_embedding_function(verbose: bool = False):
     # ── Try 1: sentence-transformers (best quality) ──────────────
     try:
         from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
+        from pathlib import Path
 
-        ef = SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
+        # Look for model bundled in the repo first, fall back to HuggingFace cache
+        _project_root = Path(__file__).resolve().parent.parent.parent
+        _local_model = _project_root / "models" / "all-MiniLM-L6-v2"
+        model_path = str(_local_model) if _local_model.exists() else "all-MiniLM-L6-v2"
+
+        ef = SentenceTransformerEmbeddingFunction(model_name=model_path)
+
+        # Commented this out to avoid Hugging Face downloading the model. 
+        # ef = SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
         ef(["test"])  # verify it actually loads and runs
         if verbose:
-            print("[embeddings] Using sentence-transformers (all-MiniLM-L6-v2)", file=sys.stderr)
+            source = "repo-local" if _local_model.exists() else "HuggingFace cache"
+            print(f"[embeddings] Using sentence-transformers ({source})", file=sys.stderr)
+
+            # print("[embeddings] Using sentence-transformers (all-MiniLM-L6-v2)", file=sys.stderr)
         return ef
     except Exception:
         pass

@@ -4,7 +4,6 @@ venv/
 __pycache__/
 *.pyc
 *.pyo
-knowledge/chroma_store/
 *.egg-info/
 dist/
 build/
